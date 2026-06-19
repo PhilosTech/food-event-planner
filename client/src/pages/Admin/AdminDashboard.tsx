@@ -123,9 +123,6 @@ export default function AdminDashboard() {
     setShowVolPwd(false)
   }
 
-  const roomStatus = (room: Room) =>
-    room.isActive ? 'active' : room.isArchived ? 'archived' : 'inactive'
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-white">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
