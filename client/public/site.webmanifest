@@ -1,0 +1,17 @@
+{
+  "name": "Food Event Planner",
+  "short_name": "FoodPlanner",
+  "description": "Coordinate dishes, ingredients and volunteers for community events.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#059669",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

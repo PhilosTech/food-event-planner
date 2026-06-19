@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative blobs -->
+  <circle cx="980" cy="315" r="340" fill="#059669" opacity="0.12"/>
+  <circle cx="1050" cy="200" r="220" fill="#10b981" opacity="0.08"/>
+  <circle cx="100" cy="580" r="180" fill="#047857" opacity="0.15"/>
+
+  <!-- Grid dots decoration -->
+  <g fill="#34d399" opacity="0.12">
+    <circle cx="680" cy="80" r="4"/><circle cx="720" cy="80" r="4"/><circle cx="760" cy="80" r="4"/>
+    <circle cx="800" cy="80" r="4"/><circle cx="840" cy="80" r="4"/>
+    <circle cx="680" cy="120" r="4"/><circle cx="720" cy="120" r="4"/><circle cx="760" cy="120" r="4"/>
+    <circle cx="800" cy="120" r="4"/><circle cx="840" cy="120" r="4"/>
+    <circle cx="680" cy="160" r="4"/><circle cx="720" cy="160" r="4"/><circle cx="760" cy="160" r="4"/>
+    <circle cx="800" cy="160" r="4"/><circle cx="840" cy="160" r="4"/>
+  </g>
+
+  <!-- Plate (right side) -->
+  <!-- Plate shadow -->
+  <ellipse cx="900" cy="370" rx="205" ry="18" fill="#022c22" opacity="0.5"/>
+  <!-- Plate base -->
+  <circle cx="900" cy="310" r="210" fill="#f0fdf4"/>
+  <!-- Plate inner rim -->
+  <circle cx="900" cy="310" r="195" fill="#dcfce7"/>
+  <!-- Plate surface -->
+  <circle cx="900" cy="310" r="170" fill="#f0fdf4"/>
+
+  <!-- Food on plate -->
+  <!-- Main dish (meat/protein) -->
+  <ellipse cx="885" cy="305" rx="75" ry="55" fill="#f97316"/>
+  <ellipse cx="885" cy="295" rx="60" ry="42" fill="#fb923c"/>
+  <ellipse cx="885" cy="290" rx="45" ry="30" fill="#fdba74"/>
+  <!-- Garnish lines on meat -->
+  <path d="M860 285 Q885 278 910 285" stroke="#f97316" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M865 295 Q885 288 905 295" stroke="#f97316" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Greens -->
+  <ellipse cx="970" cy="300" rx="42" ry="35" fill="#16a34a"/>
+  <ellipse cx="968" cy="295" rx="32" ry="27" fill="#22c55e"/>
+  <ellipse cx="972" cy="292" rx="20" ry="17" fill="#4ade80"/>
+
+  <!-- Side dish (small) -->
+  <ellipse cx="840" cy="355" rx="35" ry="22" fill="#fbbf24"/>
+  <ellipse cx="840" cy="350" rx="27" ry="16" fill="#fde68a"/>
+
+  <!-- Fork (left of plate) -->
+  <g transform="translate(660 175)">
+    <rect x="17" y="0" width="6" height="28" rx="3" fill="#94a3b8"/>
+    <rect x="10" y="0" width="5" height="18" rx="2.5" fill="#94a3b8"/>
+    <rect x="24" y="0" width="5" height="18" rx="2.5" fill="#94a3b8"/>
+    <rect x="17" y="16" width="6" height="10" rx="2" fill="#94a3b8"/>
+    <rect x="17" y="26" width="6" height="100" rx="3" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Knife (right of plate) -->
+  <g transform="translate(1095 175)">
+    <rect x="0" y="0" width="6" height="28" rx="3" fill="#94a3b8"/>
+    <path d="M0 0 Q10 12 8 28 L0 28 Z" fill="#94a3b8"/>
+    <rect x="0" y="28" width="6" height="100" rx="3" fill="#cbd5e1"/>
+  </g>
+
+  <!-- Left side: text content -->
+  <!-- Tag pill -->
+  <rect x="80" y="100" width="220" height="44" rx="22" fill="#059669" opacity="0.8"/>
+  <text x="190" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="22" fill="#a7f3d0" text-anchor="middle" font-weight="600">Community Events</text>
+
+  <!-- Main title -->
+  <text x="80" y="250" font-family="system-ui,-apple-system,sans-serif" font-size="88" font-weight="800" fill="white" letter-spacing="-2">Food Event</text>
+  <text x="80" y="350" font-family="system-ui,-apple-system,sans-serif" font-size="88" font-weight="800" fill="#34d399" letter-spacing="-2">Planner</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="420" font-family="system-ui,-apple-system,sans-serif" font-size="30" fill="#6ee7b7">Coordinate dishes, ingredients</text>
+  <text x="80" y="460" font-family="system-ui,-apple-system,sans-serif" font-size="30" fill="#6ee7b7">and volunteers in one place.</text>
+
+  <!-- Bottom feature pills -->
+  <rect x="80" y="515" width="155" height="50" rx="25" fill="#047857"/>
+  <text x="157" y="547" font-family="system-ui,sans-serif" font-size="22" fill="#a7f3d0" text-anchor="middle">Dishes</text>
+
+  <rect x="248" y="515" width="185" height="50" rx="25" fill="#047857"/>
+  <text x="340" y="547" font-family="system-ui,sans-serif" font-size="22" fill="#a7f3d0" text-anchor="middle">Ingredients</text>
+
+  <rect x="446" y="515" width="165" height="50" rx="25" fill="#047857"/>
+  <text x="529" y="547" font-family="system-ui,sans-serif" font-size="22" fill="#a7f3d0" text-anchor="middle">Volunteers</text>
+</svg>
