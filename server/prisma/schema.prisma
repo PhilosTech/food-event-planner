@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String @id @default(cuid())
+  username     String @unique
+  passwordHash String
+}
+
+model Room {
+  id                    String  @id @default(cuid())
+  slug                  String  @unique
+  name                  String
+  description           String?
+  isActive              Boolean @default(true)
+  isArchived            Boolean @default(false)
+  leaderPassword        String?
+  leaderPasswordHash    String?
+  volunteerPassword     String?
+  volunteerPasswordHash String?
+  createdAt             DateTime @default(now())
+
+  attendees   Attendees?
+  dishes      Dish[]
+  ingredients Ingredient[]
+  members     RoomMember[]
+}
+
+model RoomMember {
+  id        String   @id @default(cuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  name      String
+  role      String?
+  createdAt DateTime @default(now())
+}
+
+model Attendees {
+  id              String @id @default(cuid())
+  roomId          String @unique
+  room            Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  totalCount      Int    @default(0)
+  vegetarianCount Int    @default(0)
+}
+
+model Dish {
+  id                String   @id @default(cuid())
+  roomId            String
+  room              Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  name              String
+  description       String?
+  responsiblePerson String?
+  createdAt         DateTime @default(now())
+
+  dishIngredients DishIngredient[]
+}
+
+model Ingredient {
+  id        String   @id @default(cuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  name      String
+  unit      String
+  qtyNeeded Float
+  createdAt DateTime @default(now())
+
+  dishIngredients DishIngredient[]
+  assignments     Assignment[]
+}
+
+model DishIngredient {
+  id           String     @id @default(cuid())
+  dishId       String
+  dish         Dish       @relation(fields: [dishId], references: [id], onDelete: Cascade)
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  qtyForDish   Float
+
+  @@unique([dishId, ingredientId])
+}
+
+model Assignment {
+  id           String     @id @default(cuid())
+  ingredientId String
+  ingredient   Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+  personName   String
+  qtyCommitted Float
+  createdAt    DateTime   @default(now())
+}
