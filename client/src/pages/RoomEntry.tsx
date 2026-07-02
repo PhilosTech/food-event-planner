@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import axios from 'axios'
 import { useAuthStore } from '../store/auth'
 import { useActiveRooms } from '../api/rooms'
 import { api } from '../api/client'
+import { useDelayedFlag } from '../hooks/useDelayedFlag'
+
+const SLOW_HINT_DELAY_MS = 4000
 
 export default function RoomEntry() {
   const { slug = '' } = useParams<{ slug: string }>()
@@ -15,6 +19,7 @@ export default function RoomEntry() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const showSlowHint = useDelayedFlag(loading, SLOW_HINT_DELAY_MS)
 
   useEffect(() => {
     const access = getRoomAccess(slug)
@@ -32,8 +37,12 @@ export default function RoomEntry() {
       const { token, role } = res.data.data
       setRoomToken(slug, token, role as 'leader' | 'volunteer')
       navigate(`/room/${slug}/home`, { replace: true })
-    } catch {
-      setError('Wrong password. Try again.')
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.status === 401) {
+        setError('Wrong password. Try again.')
+      } else {
+        setError('Server is unavailable right now. Please try again in a bit.')
+      }
     } finally {
       setLoading(false)
     }
@@ -102,6 +111,11 @@ export default function RoomEntry() {
             >
               {loading ? 'Checking...' : 'Enter the room →'}
             </button>
+            {showSlowHint && (
+              <p className="text-lg text-gray-400 text-center">
+                Almost there... this may take up to a minute if the app hasn't been used in a while. Please stay on this page.
+              </p>
+            )}
           </form>
         </div>
       </main>

@@ -1,9 +1,13 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { useActiveRooms } from '../api/rooms'
+import { useDelayedFlag } from '../hooks/useDelayedFlag'
+
+const SLOW_HINT_DELAY_MS = 4000
 
 export default function Landing() {
-  const { data: rooms, isLoading, error } = useActiveRooms()
+  const { data: rooms, isLoading, error, refetch, isRefetching } = useActiveRooms()
   const navigate = useNavigate()
+  const showSlowHint = useDelayedFlag(isLoading, SLOW_HINT_DELAY_MS)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-white">
@@ -30,10 +34,26 @@ export default function Landing() {
                 <div className="h-12 bg-gray-200 rounded-2xl" />
               </div>
             ))}
+            {showSlowHint && (
+              <p className="text-lg text-gray-400 text-center px-4">
+                Almost there... this may take up to a minute if the app hasn't been used in a while. Please stay on this page.
+              </p>
+            )}
           </div>
         )}
 
-        {error && <p className="text-red-500 text-lg text-center">Failed to load events.</p>}
+        {error && (
+          <div className="text-center py-8">
+            <p className="text-red-500 text-lg mb-4">Server is unavailable right now. Please try again in a bit.</p>
+            <button
+              onClick={() => refetch()}
+              disabled={isRefetching}
+              className="bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-200 disabled:text-gray-400 active:scale-95 text-white font-semibold text-lg rounded-2xl px-6 py-3 transition-all"
+            >
+              {isRefetching ? 'Retrying...' : 'Retry'}
+            </button>
+          </div>
+        )}
 
         {!isLoading && rooms?.length === 0 && (
           <p className="text-gray-400 text-center py-16 text-lg">No active events right now.</p>
